@@ -2,7 +2,7 @@ import { generateSummary } from "@/app/lib/summarizer";
 import { NextResponse } from "next/server";
 import { YoutubeTranscript } from "youtube-transcript";
 
-export const maxDuration = 300; // 5 minutes for Vercel Pro plan
+export const maxDuration = 60; // 60 seconds, which is the maximum duration allowed for requests on the Vercel Pro plan. // Maximum duration for captions is set to 5 minutes (300 seconds) for Vercel Pro plan.
 export const dynamic = "force-dynamic";
 
 // Helper function to validate YouTube URL
