@@ -83,80 +83,93 @@ const Homepage = () => {
     });
   };
 
-  // Skeleton loader components
+  // Glassmorphism Card Component
+  const GlassCard = ({ children, className = "" }) => (
+    <div
+      className={`bg-white/10 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden border border-white/20 ${className}`}
+    >
+      {children}
+    </div>
+  );
+
+  // Skeleton loader components with glassmorphism
   const SummarySkeleton = () => (
     <div className="space-y-4 animate-pulse">
-      <div className="h-6 bg-gray-200 rounded w-1/3"></div>
+      <div className="h-6 bg-white/20 rounded w-1/3"></div>
       <div className="space-y-2">
-        <div className="h-4 bg-gray-200 rounded"></div>
-        <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-        <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+        <div className="h-4 bg-white/20 rounded"></div>
+        <div className="h-4 bg-white/20 rounded w-5/6"></div>
+        <div className="h-4 bg-white/20 rounded w-3/4"></div>
       </div>
       <div className="space-y-2">
-        <div className="h-4 bg-gray-200 rounded"></div>
-        <div className="h-4 bg-gray-200 rounded w-4/5"></div>
+        <div className="h-4 bg-white/20 rounded"></div>
+        <div className="h-4 bg-white/20 rounded w-4/5"></div>
       </div>
     </div>
   );
 
   const VideoPlaceholder = () => (
-    <div className="bg-gray-100 rounded-xl aspect-video flex items-center justify-center">
+    <GlassCard className="aspect-video flex items-center justify-center">
       <div className="text-center p-6">
-        <Youtube className="mx-auto h-12 w-12 text-gray-400" />
-        <h3 className="mt-2 text-lg font-medium text-gray-900">
+        <Youtube className="mx-auto h-12 w-12 text-white/50" />
+        <h3 className="mt-2 text-lg font-medium text-white">
           No video selected
         </h3>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-white/70">
           Enter a YouTube URL to load the video
         </p>
       </div>
-    </div>
+    </GlassCard>
   );
 
   const TranscriptPlaceholder = () => (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+    <GlassCard>
       <div className="p-6 sm:p-8">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold text-gray-900">Transcript</h2>
+          <h2 className="text-2xl font-bold text-white">Transcript</h2>
         </div>
         <div className="text-center py-12">
-          <FileText className="mx-auto h-12 w-12 text-gray-400" />
-          <h3 className="mt-2 text-lg font-medium text-gray-900">
+          <FileText className="mx-auto h-12 w-12 text-white/50" />
+          <h3 className="mt-2 text-lg font-medium text-white">
             No transcript available
           </h3>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-white/70">
             The video transcript will appear here after processing
           </p>
         </div>
       </div>
-    </div>
+    </GlassCard>
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-900/30 via-purple-900/30 to-gray-900/30">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-            YouTube Video Summarizer
-          </h1>
-          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-            Transform long videos into concise, AI-powered summaries in seconds
-          </p>
+        <div className="text-center mb-8">
+          <GlassCard className="py-6 px-8">
+            <h1 className="text-4xl font-bold sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-300">
+              YouTube Video Summarizer
+            </h1>
+            <p className="mt-4 text-xl text-white/80 max-w-2xl mx-auto">
+              Transform long videos into concise, AI-powered summaries in
+              seconds
+            </p>
+          </GlassCard>
         </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           <div className="lg:col-span-3 space-y-6">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+            <GlassCard>
               <div className="p-6 sm:p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <label
                         htmlFor="youtube-url"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-white/90"
                       >
                         YouTube Video URL
                       </label>
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-white/60">
                         Paste any YouTube link
                       </span>
                     </div>
@@ -164,7 +177,7 @@ const Homepage = () => {
                       <input
                         type="text"
                         id="youtube-url"
-                        className="block w-full rounded-lg border-0 py-3 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 focus:outline-none sm:text-sm sm:leading-6"
+                        className="block w-full rounded-lg border-0 py-3 px-4 text-white bg-white/10 backdrop-blur-sm placeholder:text-white/50 ring-1 ring-inset ring-white/20 focus:ring-2 focus:ring-inset focus:ring-indigo-400 focus:outline-none sm:text-sm sm:leading-6"
                         placeholder="https://www.youtube.com/watch?v=..."
                         value={youtubeUrl}
                         onChange={(e) => setYoutubeUrl(e.target.value)}
@@ -173,7 +186,7 @@ const Homepage = () => {
                         <button
                           type="button"
                           onClick={() => setYoutubeUrl("")}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-500"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white/70"
                         >
                           <X className="h-5 w-5" />
                         </button>
@@ -187,10 +200,10 @@ const Homepage = () => {
                   />
 
                   {error && (
-                    <div className="rounded-md bg-red-50 p-4">
+                    <div className="rounded-md bg-red-400/20 backdrop-blur-sm p-4 border border-red-400/30">
                       <div className="flex">
                         <div className="ml-3">
-                          <h3 className="text-sm font-medium text-red-800">
+                          <h3 className="text-sm font-medium text-white">
                             {error}
                           </h3>
                         </div>
@@ -202,7 +215,7 @@ const Homepage = () => {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className={`flex flex-1 justify-center rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+                      className={`flex flex-1 justify-center rounded-lg bg-gradient-to-r from-indigo-300/50 to-purple-300/50 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:from-indigo-600/50 hover:to-purple-700/50 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all ${
                         isLoading ? "opacity-80 cursor-not-allowed" : ""
                       }`}
                     >
@@ -224,10 +237,10 @@ const Homepage = () => {
                       disabled={
                         isLoading || (!youtubeUrl && !summary && !videoId)
                       }
-                      className={`flex items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-offset-2 ${
+                      className={`flex items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-offset-2 transition-all ${
                         isLoading || (!youtubeUrl && !summary && !videoId)
-                          ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                          : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
+                          ? "bg-white/5 text-white/30 cursor-not-allowed"
+                          : "bg-white/10 text-white hover:bg-white/20 border border-white/20"
                       }`}
                     >
                       <X className="h-5 w-5" />
@@ -238,12 +251,12 @@ const Homepage = () => {
                   </div>
                 </form>
               </div>
-            </div>
+            </GlassCard>
 
             {isLoading && (
               <div className="mt-6 text-center">
-                <div className="inline-flex items-center rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-gray-600">
-                  <Clock className="-ml-1 mr-1.5 h-5 w-5 text-gray-400" />
+                <div className="inline-flex items-center rounded-full bg-white/10 backdrop-blur-sm px-4 py-2 text-sm font-medium text-white border border-white/20">
+                  <Clock className="-ml-1 mr-1.5 h-5 w-5 text-white/70" />
                   Processing takes about 30-60 seconds depending on video length
                 </div>
               </div>
@@ -251,21 +264,21 @@ const Homepage = () => {
 
             {isLoading ? (
               <div className="space-y-6">
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+                <GlassCard>
                   <div className="p-6 sm:p-8">
                     <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-2xl font-bold text-gray-900">
+                      <h2 className="text-2xl font-bold text-white">
                         Video Summary
                       </h2>
                       <div className="flex space-x-2">
                         <button
-                          className="text-sm font-medium text-gray-400 cursor-not-allowed"
+                          className="text-sm font-medium text-white/50 cursor-not-allowed"
                           disabled
                         >
                           Copy
                         </button>
                         <button
-                          className="text-sm font-medium text-gray-400 cursor-not-allowed"
+                          className="text-sm font-medium text-white/50 cursor-not-allowed"
                           disabled
                         >
                           Export
@@ -274,41 +287,41 @@ const Homepage = () => {
                     </div>
                     <SummarySkeleton />
                   </div>
-                </div>
+                </GlassCard>
 
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+                <GlassCard>
                   <div className="p-6 sm:p-8">
                     <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-2xl font-bold text-gray-900">
+                      <h2 className="text-2xl font-bold text-white">
                         Advanced Features
                       </h2>
                     </div>
                     <SummarySkeleton />
                   </div>
-                </div>
+                </GlassCard>
 
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+                <GlassCard>
                   <div className="p-6 sm:p-8">
                     <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-2xl font-bold text-gray-900">
+                      <h2 className="text-2xl font-bold text-white">
                         Educational Tools
                       </h2>
                     </div>
                     <SummarySkeleton />
                   </div>
-                </div>
+                </GlassCard>
               </div>
             ) : summary ? (
               <div className="space-y-6">
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+                <GlassCard>
                   <div className="p-6 sm:p-8">
                     <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-2xl font-bold text-gray-900">
+                      <h2 className="text-2xl font-bold text-white">
                         Video Summary
                       </h2>
                       <div className="flex space-x-2">
                         <button
-                          className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                          className="flex items-center text-sm font-medium text-white hover:text-indigo-300 transition-colors"
                           onClick={() => {
                             navigator.clipboard.writeText(summary);
                           }}
@@ -316,52 +329,52 @@ const Homepage = () => {
                           <Copy className="mr-1 h-4 w-4" />
                           Copy
                         </button>
-                        <button className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                        <button className="flex items-center text-sm font-medium text-white hover:text-indigo-300 transition-colors">
                           <Download className="mr-1 h-4 w-4" />
                           Export
                         </button>
                       </div>
                     </div>
-                    <div className="prose max-w-none text-gray-700">
+                    <div className="prose max-w-none text-white/90">
                       <p className="whitespace-pre-line">{summary}</p>
                     </div>
                   </div>
-                </div>
+                </GlassCard>
 
                 <AdvancedFeatures summary={summary} />
                 <EducationalTools summary={summary} />
               </div>
             ) : (
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+              <GlassCard>
                 <div className="p-6 sm:p-8">
                   <div className="text-center py-12">
-                    <Lightbulb className="mx-auto h-12 w-12 text-gray-400" />
-                    <h3 className="mt-2 text-lg font-medium text-gray-900">
+                    <Lightbulb className="mx-auto h-12 w-12 text-white/50" />
+                    <h3 className="mt-2 text-lg font-medium text-white">
                       Ready to summarize
                     </h3>
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-white/70">
                       Enter a YouTube URL and click "Generate Summary" to get
                       started
                     </p>
                   </div>
                 </div>
-              </div>
+              </GlassCard>
             )}
           </div>
 
           <div className="lg:col-span-2 space-y-6">
             {videoId ? (
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+              <GlassCard>
                 <div className="aspect-video">
                   <iframe
                     src={`https://www.youtube.com/embed/${videoId}`}
-                    className="w-full h-full rounded-t-lg"
+                    className="w-full h-full bg-white/10 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden border border-white/20"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     title="YouTube video player"
                   ></iframe>
                 </div>
-              </div>
+              </GlassCard>
             ) : (
               <VideoPlaceholder />
             )}
@@ -369,21 +382,29 @@ const Homepage = () => {
             {transcript ? (
               <TranscriptSection transcript={transcript} videoId={videoId} />
             ) : isLoading ? (
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-                <div className="p-6 sm:p-8">
+              <GlassCard>
+                <div className="px-6 sm:p-8">
                   <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-2xl font-bold text-gray-900">
+                    <h2 className="text-2xl font-bold text-white">
                       Transcript
                     </h2>
                   </div>
                   <div className="space-y-4 animate-pulse">
-                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                    <div className="h-4 bg-gray-200 rounded"></div>
-                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                    <div className="h-4 bg-white/20 rounded w-3/4"></div>
+                    <div className="h-4 bg-white/20 rounded"></div>
+                    <div className="h-4 bg-white/20 rounded w-5/6"></div>
+                    <div className="h-4 bg-white/20 rounded w-1/2"></div>
+                    <div className="h-4 bg-white/20 rounded w-3/4"></div>
+                    <div className="h-4 bg-white/20 rounded"></div>
+                    <div className="h-4 bg-white/20 rounded w-5/6"></div>
+                    <div className="h-4 bg-white/20 rounded w-1/2"></div>
+                    <div className="h-4 bg-white/20 rounded w-3/4"></div>
+                    <div className="h-4 bg-white/20 rounded"></div>
+                    <div className="h-4 bg-white/20 rounded w-5/6"></div>
+                    <div className="h-4 bg-white/20 rounded w-1/2"></div>
                   </div>
                 </div>
-              </div>
+              </GlassCard>
             ) : (
               <TranscriptPlaceholder />
             )}

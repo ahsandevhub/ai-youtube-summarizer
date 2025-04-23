@@ -7,21 +7,19 @@ const TranscriptSection = ({ transcript, videoId }) => {
   if (!transcript) return null;
 
   return (
-    <div className="bg-white rounded-lg shadow p-4 mb-6 border border-gray-100">
-      <div className="flex justify-between items-center mb-3">
-        <h2 className="text-lg font-semibold text-gray-800">
-          Video Transcript
-        </h2>
+    <div className="bg-white/10 backdrop-blur-lg rounded-xl shadow-lg p-6 mb-6 border border-white/20">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-lg font-semibold text-white">Video Transcript</h2>
         <button
           onClick={() => setShowTranscript(!showTranscript)}
-          className="text-indigo-600 hover:text-indigo-800 text-sm font-medium px-3 py-1 rounded hover:bg-indigo-50 transition-colors"
+          className="text-indigo-400 hover:text-indigo-300 text-sm font-medium px-3 py-1 rounded hover:bg-indigo-500/20 transition-colors bg-indigo-500/10" // Adjusted colors for better contrast on glassmorphism
         >
           {showTranscript ? "Hide" : "Show"} Transcript
         </button>
       </div>
 
       {showTranscript && (
-        <div className="max-h-96 overflow-y-auto pr-2">
+        <div className="max-h-[800px] overflow-y-auto glassmorphism-scrollbar pr-2">
           {transcript.map((item, index) => (
             <div
               key={index}
@@ -30,15 +28,16 @@ const TranscriptSection = ({ transcript, videoId }) => {
               <button
                 onClick={() =>
                   window.open(
-                    `https://youtu.be/${videoId}?t=${Math.floor(item.start)}s`,
+                    `https://youtu.be/$${videoId}?t=${Math.floor(item.start)}s`,
                     "_blank"
                   )
                 }
-                className="text-indigo-600 hover:text-indigo-800 font-mono bg-indigo-50 px-2 py-0.5 rounded mr-2 hover:bg-indigo-100 transition-colors"
+                className="text-indigo-300 hover:text-indigo-200 font-mono bg-indigo-500/20 px-2 py-0.5 rounded mr-2 hover:bg-indigo-500/30 transition-colors" // Adjusted colors for better contrast
               >
                 {formatTime(item.start)}
               </button>
-              <span className="text-gray-700">{item.text}</span>
+              <span className="text-white/80">{item.text}</span>{" "}
+              {/* Changed text color */}
             </div>
           ))}
         </div>

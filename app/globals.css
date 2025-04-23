@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+/* Glassmorphism Scrollbar */
+.glassmorphism-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Width of the entire scrollbar */
+}
+
+.glassmorphism-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1); /* Transparent track */
+  border-radius: 10px;
+}
+
+.glassmorphism-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent thumb */
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+.glassmorphism-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Slightly more opaque on hover */
+}
+
+.glassmorphism-scrollbar {
+  overflow-y: auto; /* IMPORTANT: Ensure scrollbar is shown only when needed */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1); /* Firefox scrollbar color */
+}
+/* Hide scrollbar for IE/Edge/Other, but keep functionality*/
+.glassmorphism-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  overflow: -moz-scrollbars-none; /* Firefox */
+}
+.glassmorphism-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
